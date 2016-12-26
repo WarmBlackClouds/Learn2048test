@@ -72,4 +72,21 @@ class GameModelMatrix {
         }
         print("")
     }
+    
+    func setPosition(row:Int,col:Int,value:Int)->Bool
+    {
+        assert(row >= 0 && row < dimension)
+        assert(col >= 0 && col < dimension)
+        
+        var val = tiles[row,col]
+        if(val > 0){
+            print("该位置(\(row),\(col))已经有值了")
+            return false
+        }
+        printTiles()
+        tiles[row,col] = value
+        printTiles()
+        return true
+        
+    }
 }
