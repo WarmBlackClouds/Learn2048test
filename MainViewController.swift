@@ -40,6 +40,11 @@ class MainViewController: UIViewController {
         // 改成主视图背景白色背景
         self.view.backgroundColor = UIColor.whiteColor()
         setupGameMap()
+        setupScoreLabels()
+//        genNumber()
+        for _ in 0..<17{
+            genNumber()
+        }
     }
 
     //让主视图可以调用绘制在祝地图上，
@@ -100,6 +105,16 @@ class MainViewController: UIViewController {
         let col = Int(arc4random_uniform(UInt32(dimension)))
         let row = Int(arc4random_uniform(UInt32(dimension)))
         //执行后续操作
+        let gmodel:GameModel? = nil //初始化前被使用时添加 ?=nil
+        if((gmodel?.isFull()) != nil){
+            print("位置已经满了")
+            return
+        }
+        if(gmodel?.setPosition(row,col: col,value:seed) == false){
+            genNumber()
+            return
+        }
+        //----------
         insertTile((row,col),value:seed)
     }
     //数字插入
