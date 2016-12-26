@@ -42,6 +42,22 @@ class MainViewController: UIViewController {
         setupGameMap()
     }
 
+    //让主视图可以调用绘制在祝地图上，
+    func setupScoreLabels(){
+        let score:ScoreVIew
+        let bestscore:ScoreVIew
+        score = ScoreVIew(stype: ScoreType.Common)
+        score.frame.origin = CGPointMake(50,80)
+        score.changeScore(value:0)
+        self.view.addSubview(score)
+        
+        bestscore = ScoreVIew(stype:ScoreType.Best)
+        bestscore.frame.origin.x = 170
+        bestscore.frame.origin.y = 80
+        bestscore.changeScore(value:0)
+        self.view.addSubview(bestscore)
+    }
+    
     func setupGameMap(){
         var x:CGFloat = 50
         var y:CGFloat = 150
