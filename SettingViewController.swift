@@ -5,7 +5,7 @@ class SettingViewController: UIViewController ,UITextFieldDelegate{
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setupControls()
         self.view.backgroundColor = UIColor.whiteColor()
     }
 
