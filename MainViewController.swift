@@ -126,6 +126,27 @@ class MainViewController: UIViewController {
         let tile = TileView(pos: CGPointMake(x,y), width: width, value: value)
         self.view.addSubview(tile)
         self.view.bringSubviewToFront(tile)
+        
+        //先将数字块大小置为原始尺寸的1/10
+        tile.layer.setAffineTransform(CGAffineTransformMakeScale(0.1, 0.1))
+        //设置动画效果，动画时间长度为1秒
+        UIView.animateWithDuration(1, delay: 0.01, options: UIViewAnimationOptions.TransitionNone, animations: {
+            ()-> Void in
+            //在动画中，数字看有一个角度的旋转。
+            tile.layer.setAffineTransform(CGAffineTransformMakeRotation(90))
+            
+            }, completion: {
+                (finished:Bool)-> Void in
+                //完成动画时，数字块复原
+                tile.layer.setAffineTransform(CGAffineTransformIdentity)
+        })
+        //实现由不透明到透明的效果
+        tile.alpha = 0
+        UIView.animateWithDuration(1, delay: 0.01, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+                ()-> Void in
+            }) { (finished) -> Void in
+                tile.alpha = 1
+        }
     }
 
 }
