@@ -86,14 +86,31 @@ class MainViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    //随机生成数字
+    func genNumber(){
+        //用于确定随机数的概率
+        let randv = Int(arc4random_uniform(10))
+        print(randv)
+        var seed:Int = 2
+        //因为有10%的机会出现1所以这里是10%的机会给4
+        if(randv == 1){
+            seed = 4
+        }
+        //随机生成行号和列号
+        let col = Int(arc4random_uniform(UInt32(dimension)))
+        let row = Int(arc4random_uniform(UInt32(dimension)))
+        //执行后续操作
+        insertTile((row,col),value:seed)
     }
-    */
+    //数字插入
+    func insertTile(pos:(Int,Int),value:Int)
+    {
+        let (row,col) = pos
+        let x = 50 + CGFloat(col) * (width + padding)
+        let y = 150 + CGFloat(row) * (width + padding)
+        let tile = TileView(pos: CGPointMake(x,y), width: width, value: value)
+        self.view.addSubview(tile)
+        self.view.bringSubviewToFront(tile)
+    }
 
 }
