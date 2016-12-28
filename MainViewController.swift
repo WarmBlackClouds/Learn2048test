@@ -148,5 +148,29 @@ class MainViewController: UIViewController {
                 tile.alpha = 1
         }
     }
+    
+    
+    func initUI(){
+        var dimention = gmodel!.dimension
+        for i in 0..<dimention {
+            for j in 0..<dimention{
+                var index = i * self.dimension + j
+                if(gmodel?.tiles[index] != 0){
+                    insertTile((i,j), value: (gmodel?.tiles[index])!)
+                }
+            }
+        }
+    }
+   
+    func resetUI(){
+//        var tiles = gmodel!.tiles
+        for(key,tile) in tiles
+        {
+            tiles.removeFromSuperview()
+            
+        }
+        tiles.removeAll(keepCapacity:true)
+        tileVals.removeAll(keepCapacity:ture)
+    }
 
 }
