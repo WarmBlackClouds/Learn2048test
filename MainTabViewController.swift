@@ -57,4 +57,38 @@ class MainTabViewController: UITabBarController ,UITabBarControllerDelegate{
         self.view.addGestureRecognizer(rightSwipe)
     }
 
+    //响应事件的方法框架
+    func _showTip(direction:String){
+        let alertController = UIAlertController(title: "提示", message: "你刚刚向\(direction)滑动了", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        alertController.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Default, handler: nil))
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
+        
+    }
+    
+    let gmodel:GameModel? = nil
+    
+    func swipeUp(){
+        print("swipeUp")
+        _showTip("上")
+        gmodel?.reflowUp()
+    }
+    
+    func swipeDown(){
+        print("swipeDown")
+        _showTip("下")
+        gmodel?.reflowDown()
+    }
+    
+    func swipeLeft(){
+        print("swipeLeft")
+        _showTip("左")
+        gmodel?.reflowLeft()
+    }
+    
+    func swipeRight(){
+        print("swipeRight")
+        _showTip("右")
+        gmodel?.reflowRight()
 }
